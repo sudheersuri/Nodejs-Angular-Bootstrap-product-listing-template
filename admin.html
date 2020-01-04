@@ -1,0 +1,48 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+	<script>
+     var app=angular.module("storywebapp",[]);
+     app.controller("webcontroller",function($scope,$http)
+     {
+        $scope.adddata=function()
+        {
+          var storydata =
+          {
+              story_name:$scope.story_name,
+              story_desc:$scope.story_desc,
+              story_cover_url:$scope.story_cover_url,
+              story_author:$scope.story_author,
+              story_editor:$scope.story_editor,
+              story_url:$scope.story_url
+          };	
+          $http.post('http://localhost:3000/poststory',JSON.stringify(storydata),function(err,res)
+			{
+                  
+			}); 
+          $scope.story_name = "";
+          $scope.story_desc = "";
+          $scope.story_cover_url = "";
+          $scope.story_author = "";
+          $scope.story_editor = "";
+          $scope.story_url = "";
+        }
+     });
+	</script>
+</head>
+<body ng-app="storywebapp" ng-controller="webcontroller">
+<input type="text" ng-model="story_name" placeholder="story name" required><br>
+<input type="text" ng-model="story_desc" placeholder="story description" required><br>
+<input type="text" ng-model="story_cover_url" placeholder="story cover url" required><br>
+<input type="text" ng-model="story_author" placeholder="story author" required><br>
+<input type="text" ng-model="story_editor" placeholder="story editor" required><br>
+<input type="text" ng-model="story_url" placeholder="story url" required><br>
+<button ng-click="adddata()">Add Story</button>
+</body>
+</html>
