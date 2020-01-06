@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -12,102 +13,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script>
-var app=angular.module("webapp",[]);
-app.controller("webcontroller",function($scope,$http)
-{
-  $scope.loaddata=function()
-  {
-    $http.get("http://localhost:3000/stories").then(function(response)
-    {
-      $scope.stories=response.data;
-      console.log($scope.stories);
-    });
-  }
-});
-</script>
+<link rel="stylesheet" type="text/css" href="/styles.css"></link>
 
-<style>
-body
-{
- 
-background-color:#312F2F;
-  height: 100vh;
+<script src="/clientlogic.js"></script>
 
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: white;
- 
-}
-img
-{
-width:100%;
-height:auto;
-}
- /**{
-  transition: all .5s ease;
-  -moz-transition: all .5s ease;
-  -webkit-transition: all .5s ease
-  }*/
-.space-adjust
-{
-    position:relative;
-    text-align: center;
-}
- .detail {
-    height: 100%;
-    width: 100%;
-    padding: 10px;
-    position: absolute; 
-    top:-100%;
-    left: 0;
-    text-align: justify;
-    background-image: url('https://digitalsynopsis.com/wp-content/uploads/2017/02/beautiful-color-gradients-backgrounds-100-vicious-stance.png');
-    overflow: auto;
-    visibility: hidden;
-}
-span
-{
-  width:100%;
-  padding:3px;
-  border-radius: 10px;
-}
-.space-adjust:hover .detail
-{
-  top:0;
-visibility: visible;
-}
-.footer
-{
-position:fixed;
-left:0;
-bottom:0;
-text-align: center;
-width: 100%;
-height:50px;
-}
-
-#search-space-adjust
-{
-  padding:5px;
-  position:relative;
-  top:5px;
-  bottom:5px;
-  width: 70%;
-  border-radius: 15px;
-} 
-#storyname
-{
-  font-family: monospace;
-  
-}
-</style>
 </head>
 <body ng-app="webapp" ng-controller="webcontroller" ng-init="loaddata()">
 <!-- Nav bar code -->
     <nav class="navbar-dark bg-dark text-center">
-      <h2 class="navbar-brand" id="brand-font">Brand Name</h2>
+      <h2 class="navbar-brand" id="brand-font">Limited Writings</h2>
     </nav>  
   <br>
 <!-- end of navbar code -->
@@ -115,7 +31,7 @@ height:50px;
   <div class="row">
        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" ng-repeat="story in stories | filter:searchstory" >
           <div class="space-adjust">
-            <img src="{{story.cover_url}}" alt="dsadas"/>
+            <img src="{{story.cover_url}}" height="270px"alt="dsadas"/>
               <h4  id="storyname">{{story.name}}</h4> 
 
               <div class="detail">
@@ -134,9 +50,12 @@ height:50px;
 
     </div>
   </div>
+
 </div>
-<div class="footer">
-  <input type="text" id="search-space-adjust" ng-model="searchstory" placeholder="search stories"/>
+  <div class="footer">
+    <a href="#" id="prev"> << </a>
+    <input type="text" id="search-space-adjust" ng-model="searchstory" placeholder="search stories"/>
+    <a href="#" id="next">>></a>
 </div>
 
 </div>
